@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+ 
+<head>
+
+    <title id="title">Feed</title> 
+    
+</head>
+<body>
+		<div class="container">
+	    
+	        <div th:replace="fragments/navbar"></div>  <!-- linking navbar  -->
+			<h2>Tweets containing #<span th:text="${tag}"></span></h2>
+			<div class="list-group" th:each="tweet:${tweetList}">
+	  			<div class="list-group-item list-group-item-action">
+	    			<div class="d-flex w-100 justify-content-between">
+	      				<a class="username" th:href="@{/users/} + ${tweet.user.username}">@<span th:text="${tweet.user.username}"></span></a>
+	      				<small style="color: red;" th:text="${tweet.date}" ></smal>
+	      				<!-- <small> <span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span></small> -->
+	    			</div>
+	    			<h4 class="mb-1" th:utext="${tweet.message}" style="color: black;"></h4>
+	    		</div>
+			</div>
+			<!-- Just in case a user manually types in a URL and views the page for which no tweets exist, we added the following code so the user can see the appropriate message -->
+		    <div th:if="${#lists.isEmpty(tweetList)}">
+	 			<h3>No tweets contain this hashtag</h3>
+			</div>
+	</div>
+</body>
+</html>

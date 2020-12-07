@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title>Tags</title>
+</head>
+<body>
+	<div class="container">
+
+		<div th:replace="fragments/navbar"></div>
+
+		<div class="container">
+			<h2>Tags</h2>
+			<!--  style="text-align: center;"  -->
+
+			<div class="list-group" th:each="tag:${tagList}">
+				<div class="list-group ">
+					<div class=" list-group-item">
+						<a class="username" th:href="@{/tweets/} + ${tag.phrase}">
+							<span th:text="${tag.phrase}"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> <br> <br> <br> <br>
+</body>
+
+</html>

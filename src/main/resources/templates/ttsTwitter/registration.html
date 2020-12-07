@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="ISO-8859-1">
+<title>tttTweet User Registration</title>
+ 
+</head>
+<body>
+    <div class="container">
+    
+        <div th:replace="fragments/navbar"></div>  <!-- linking navbar  -->
+        
+        <!-- <div th:replace="fragments/navbar :: navbar"></div> -->
+        <h2 style="text-align: center;">Sign up</h2>
+        <div>
+	        <form th:action="@{/signup}" th:object="${user}" method="post" autocomplete="off"  th:if="!${success}">
+	            <div class="form-group">
+	                <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="validation-message"></label>
+	                <input type="text" th:field="*{firstName}" placeholder="First Name" class="form-control"/>
+	            </div>
+	            <div class="form-group">
+	                <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="validation-message"></label>
+	                <input type="text" th:field="*{lastName}" placeholder="Last Name" class="form-control"/>
+	            </div>
+	            <div class="form-group">
+	                <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="validation-message"></label>
+	                <input type="text" th:field="*{username}" placeholder="Username" class="form-control"/>
+	            </div>
+	            <div class="form-group"> 
+	                <input type="text" th:field="*{email}" placeholder="Email" class="form-control"/> 
+	                <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="validation-message"></label>
+	            </div>
+	            <div class="form-group">
+	                <input type="password" th:field="*{password}" placeholder="Password" class="form-control"/> 
+	                <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="validation-message"></label>
+	            </div>
+	            <div class="form-group">
+	                <button class="btn btn-md btn-success btn-block" name="Submit" value="Submit" type="Submit" th:text="Submit"></button>
+	            </div>
+	        </form>
+	        
+	        <!-- 
+	        	The success message for the sign up page 
+	        -->
+			<div th:if="${success}" style="text-align: center;">
+				<h3>
+					<span class="text-success" th:utext="${success}"></span>
+				</h3>
+			</div>
+        </div>
+        
+        <div class="col ">
+			 <!-- <label th:if="${success == Sign up successful!}" th:errors="*{password}" class="validation-message"></label> -->
+		</div>
+        
+        <div class="col ">
+			<form th:action="@{/login}" method="get">
+				<button style="float: right" type="Submit" class="btn btn-md btn-primary btn-block unfollow_btn">Log in</button>
+			</form>
+		</div>
+        
+        <div>
+        
+        </div>
+    </div>
+</body>
+</html>

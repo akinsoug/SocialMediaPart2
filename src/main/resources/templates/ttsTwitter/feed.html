@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+	<title>Tweet Feed</title>
+</head>
+<body>
+	<div class="container">
+		<div th:replace="fragments/navbar"></div>
+		<!-- linking navbar  -->
+		<div class="container">
+			<h2>Tweets</h2> <!--  style="text-align: center;"  -->
+			<ul class="nav nav-tabs">
+				<li role="presentation"
+					th:classappend="${filter == 'all' ? 'active' : '' }"><a
+					href="/tweets">All</a>
+				</li>
+				<!-- <li role="presentation" th:classappend="${filter == 'followers' ? 'active' : '' }">
+			    	<a href="/users?filter=followers">Followers</a>
+			    </li> -->
+				<li role="presentation" th:classappend="${filter == 'following' ? 'active' : '' }">
+					<a href="/tweets?filter=following">Following</a>
+				</li>
+			</ul>
+			<br />
+			<div > <!-- style="padding: 0em 2em 2em 2em;"  -->
+				<form th:action="@{/tweets/new}" method="get"> 
+					<br />
+					<div th:each="tweet:${tweetList}">
+						<div class="list-group ">
+						<a th:href="@{/users/} + ${tweet.user.username}" >
+							<div class=" list-group-item">
+								<h5 class="btn btn-md btn-primary btn-block " style="text-align: left;">
+									@<span th:text="${tweet.user.username}" ></span>
+									<small class=" btn-primary " th:text="${tweet.date}" ></smal>
+									
+									<!-- 
+									<small style="color: red;">
+										<span th:text="${#dates.format(tweet.createdAt, 'M/d/yy')}"></span>
+									</small>
+									 -->
+								</h5>
+								<h4 th:utext="${tweet.message}" style="color: black;"></h4>
+							</div>
+							</a>
+						</div>
+					</div>
+		
+					<!-- href="/tweets/new" -->
+					<button class="btn btn-md btn-success btn-block" name="Submit"
+						value="" type="Submit">New Tweet</button>
+					<!-- <a href="/tweets/new">  </a> -->
+		
+							
+						<div th:if="${#lists.isEmpty(tweetList) and filter == 'all'}">
+							<h3>No tweets have been created yet</h3>
+						</div>
+						<div
+							th:if="${#lists.isEmpty(tweetList) and filter == 'following'}">
+							<center><h3>No tweets have been created by your followers</h3></center>
+						</div>
+				</form>
+		       <!-- 
+				<div th:if="${noTweet}" style="text-align: center;">
+					<h3>
+						<span class="text-warning" > No Tweets Yet!!!</span>
+					</h3>
+				</div>
+				 -->
+			</div>
+		</div>
+	</div> <br> <br> <br> <br> <br>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<title>Log in</title>
+<!-- <script type="text/javascript" th:src="@{js/main.js}" src="../static/js/main.js"></script> -->
+<!-- <div th:replace="fragments/styling :: head-style"></div> -->
+</head>
+<body>
+	<div class="container">
+
+		<div th:replace="fragments/navbar"></div>
+		<!-- linking navbar  -->
+
+		<div class="container">
+			<h2>Welcome!</h2>
+			<div class="row">
+				<div class="col  ">
+					<form th:action="@{/login}" method="post">
+
+						<br /> <input type="text" id="username" name="username"
+							th:placeholder="Username" class="form-control" /> <br /> <input
+							type="password" th:placeholder="Password" id="password"
+							name="password" class="form-control" /> <br />
+							
+						<div align="center" th:if="${param.error}">
+							<h4 style="color: red">Login unsuccessful.</h4>
+						</div>
+						
+						<div align="center" th:if="${param.success}">
+							<h4 style="color: Green">Login successful.</h4>
+						</div> <!--  -->
+						
+						<div class="col col-sm-6">
+							<button class="btn btn-md btn-success btn-block" name="Submit" value="Login" type="Submit">Log in</button>
+						</div>
+					</form>
+					
+				</div>
+				<div class="col col-sm-6">
+					<form th:action="@{/signup}" method="get">
+						<!-- <a href="signup">Login</a> -->
+						<button style="float: right" type="Submit"
+							class="btn btn-md btn-primary btn-block unfollow_btn">sign up</button>
+					</form>
+				</div> <br> <br>
+				<div th:if="${success}" style="text-align: center;">
+					<h3>
+						<span class="text-success" th:utext="${success}"></span>
+					</h3>
+				</div> 
+
+			</div>
+
+		</div>
+</body>
+</html>

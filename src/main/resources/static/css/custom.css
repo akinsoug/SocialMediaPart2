@@ -1,0 +1,27 @@
+@charset "ISO-8859-1";
+
+.spanDate{
+	color: purple;
+}
+
+a.username {
+    color: #00aced
+}
+
+a.tag {
+    color: #0084b4
+}
+/*
+body{
+	background-color: #0B4C5F;
+	text-align: center;
+}
+
+.container{
+	background-color: rgba(255, 255, 255, 0.8);
+	margin-top: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 5px; 
+}
+*/
